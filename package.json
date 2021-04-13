@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:front": "webpack --config ./webpack-front.config.js -w",
+    "build:back": "webpack --config ./webpack-back.config.js -w"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/SamiKamal/Simple-game/issues"
   },
-  "homepage": "https://github.com/SamiKamal/Simple-game#readme"
+  "homepage": "https://github.com/SamiKamal/Simple-game#readme",
+  "devDependencies": {
+    "webpack": "^5.32.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.0.1"
+  }
 }
