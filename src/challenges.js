@@ -1,23 +1,30 @@
 var score,roundScore,activePlayer,gamePlaying;
 
 init();
+var lastDice;
 
 document.querySelector('.dice').style.display = 'none'; //set the dice invisbile
+document.querySelector('.dice2').style.display = 'none'; //set the dice invisbile
+
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
 
     if (gamePlaying){
         //Random number
         var dice = Math.floor(Math.random()*6 +1);  //create random number for dice
+        var dice2 = Math.floor(Math.random()*6 +1);  //create random number for dice
 
         //Display the result
         document.querySelector('.dice').style.display = 'block';
-        document.querySelector('.dice').src = 'dice-'+dice+'.png';
+        document.querySelector('.dice').src = './img/dice-'+dice+'.png';
+        document.querySelector('.dice2').style.display = 'block';
+        document.querySelector('.dice2').src = './img/dice-'+dice2+'.png';
 
-        //update the roll number if the dive WAS NOT A 1
-        if (dice !== 1) {
+
+        //update the roll number if the dice WAS NOT A 1
+        if (dice !== 1 && dice2 !== 1 ) {
             // add score
-            roundScore += dice //Same as roundScore = roundScore + dice
+            roundScore += dice + dice2 //Same as roundScore = roundScore + dice
             document.getElementById('current-'+activePlayer).textContent = roundScore
 
         } else {
@@ -25,7 +32,13 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
 
         }
-
+        /*
+        if (dice === 6 && dice2 === 6){
+            score[activePlayer] = 0
+            document.getElementById('score-'+activePlayer).textContent = '0';
+            nextPlayer();
+        }
+        */
     }
 
 })
@@ -53,7 +66,6 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         } else{
             winScore = 100;
         }
-
         if (score[activePlayer] >= winScore){
             document.querySelector('#name-'+activePlayer).textContent = 'WINNER !'
             document.querySelector('.player-'+activePlayer+'-panel').classList.add('winner');
@@ -100,6 +112,8 @@ function nextPlayer() {
 
     //remove dice when get 0 
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
+
 
 
 }
@@ -129,8 +143,8 @@ function init() {
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
     document.querySelector('.dice').style.display = 'none'; //set the dice invisbile
+    document.querySelector('.dice2').style.display = 'none'; //set the dice invisbile
+
 
 
 }
-
-alert('GAME RULES \n \n \n - The game has 2 players, playing in rounds \n \n - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score \n \n - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it\'s the next player\'s turn \n \n - The player can choose to \'Hold\', which means that his ROUND score gets added to his GLBAL score. After that, it\'s the next player\'s turn \n \n - The first player to reach 100 points on GLOBAL score wins the game')
