@@ -1,4 +1,20 @@
 var score,roundScore,activePlayer,gamePlaying;
+var socket = io();
+// let counter = 0;
+
+// window.addEventListener('click', e => {
+//     counter++
+//     // emit to server
+//     socket.emit('test', 'hola this is the ' + counter + ' message');
+// })
+
+// // when recive from server
+// socket.on('test', msg => {
+//     console.log(msg);
+// })
+// socket.on('private message', msg => {
+//     console.log(msg);
+// })
 
 init();
 
@@ -133,4 +149,4 @@ function init() {
 
 }
 
-alert('GAME RULES \n \n \n - The game has 2 players, playing in rounds \n \n - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score \n \n - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it\'s the next player\'s turn \n \n - The player can choose to \'Hold\', which means that his ROUND score gets added to his GLBAL score. After that, it\'s the next player\'s turn \n \n - The first player to reach 100 points on GLOBAL score wins the game')
+// alert('GAME RULES \n \n \n - The game has 2 players, playing in rounds \n \n - In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score \n \n - BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it\'s the next player\'s turn \n \n - The player can choose to \'Hold\', which means that his ROUND score gets added to his GLBAL score. After that, it\'s the next player\'s turn \n \n - The first player to reach 100 points on GLOBAL score wins the game')
