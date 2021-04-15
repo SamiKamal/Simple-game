@@ -1,0 +1,22 @@
+.player-0-panel{
+    padding: 0;
+}
+
+.btn-hold{
+    top: 60%;
+}
+
+.btn-new{
+    top: 50%;
+}
+
+.btn-hold, .btn-new{
+    background-color: #EB4D4D;
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: white;
+}
+
+i, ion-icon {
+    color: white;
+}

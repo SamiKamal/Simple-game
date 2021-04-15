@@ -1,21 +1,4 @@
 var score,roundScore,activePlayer,gamePlaying;
-var socket = io();
-let counter = 0;
-
-window.addEventListener('click', e => {
-    counter++
-    // emit to server
-    socket.emit('join', 'hola this is the ' + counter + ' message');
-})
-
-// // when recive from server
-// socket.on('test', msg => {
-//     console.log(msg);
-// })
-// socket.on('private message', msg => {
-//     console.log(msg);
-// })
-
 init();
 
 document.querySelector('.dice').style.display = 'none'; //set the dice invisbile
