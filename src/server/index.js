@@ -1,5 +1,5 @@
 const express = require('express');
-const uid = require("uid/single")
+const {uid} = require("uid/single")
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
@@ -11,6 +11,8 @@ app.get('/', (req, res) => {
 
 
 app.use(express.static(__dirname + '/'));
+app.use('/online',express.static(__dirname + '/'));
+
 app.get('/home', (req, res) => {
   res.sendFile(__dirname + '/home.html');
 });
@@ -20,8 +22,14 @@ app.get('/offline', (req, res) => {
 });
 
 app.get('/online', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.redirect('/online/' + uid());
+  
 });
+
+app.get('/online/:id', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+
+})
 
 
 
