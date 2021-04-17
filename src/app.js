@@ -28,7 +28,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 
         //Display the result
         document.querySelector('.dice').style.display = 'block';
-        document.querySelector('.dice').src = './img/dice-'+dice+'.png';
+        document.querySelector('.dice').src = '/img/dice-'+dice+'.png';
 
         //update the roll number if the dive WAS NOT A 1
         if (dice !== 1) {

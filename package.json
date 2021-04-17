@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "build:front": "webpack --config ./webpack-front.config.js -w",
-    "build:back": "webpack --config ./webpack-back.config.js -w"
+    "build:back": "webpack --config ./webpack-back.config.js -w",
+    "server": "nodemon ./dist/bundle.js",
+    "dev": "npm-run-all --parallel build:back build:front server"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,8 @@
   },
   "homepage": "https://github.com/SamiKamal/Simple-game#readme",
   "devDependencies": {
+    "concurrently": "^6.0.2",
+    "npm-run-all": "^4.1.5",
     "webpack": "^5.32.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2",

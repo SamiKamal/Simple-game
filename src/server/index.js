@@ -10,8 +10,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.use(express.static(__dirname + '/'));
-app.use('/online',express.static(__dirname + '/'));
+app.use(express.static(__dirname));
 
 app.get('/home', (req, res) => {
   res.sendFile(__dirname + '/home.html');
