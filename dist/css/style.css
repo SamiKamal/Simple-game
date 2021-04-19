@@ -85,7 +85,7 @@ i, ion-icon {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.input-winning{
+.input-winning, .input-name{
     position: absolute;
     right: 385px;
     padding: 10px 20px;
@@ -93,4 +93,14 @@ i, ion-icon {
     text-align: center;
     margin-top: 1em;
     border: 1px solid #EB4D4D;
+}
+
+.input-name{
+    position: absolute;
+    width: 200px;
+    left: 40%;
+    top: 40%;
+    margin: 0;
+    transform: translateX(-50%, 50%);
+
 }

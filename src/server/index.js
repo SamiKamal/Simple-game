@@ -22,7 +22,8 @@ app.get('/offline', (req, res) => {
 });
 
 app.get('/online', (req, res) => {
-  res.redirect('/online/' + uid());
+  res.sendFile(__dirname + '/onlineHome.html')
+  // res.redirect('/online/' + uid());
   
 });
 
