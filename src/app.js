@@ -1,20 +1,18 @@
 var score,roundScore,activePlayer,gamePlaying;
 var socket = io();
 let counter = 0;
-
+let socketRoomId = location.pathname.match(/(?<=\/)(?=[^\/]*$).*/gm)[0]
 window.addEventListener('click', e => {
     counter++
     // emit to server
     socket.emit('join', 'hola this is the ' + counter + ' message');
+    socket.emit('join room', (socketRoomId))
 })
-
-// // when recive from server
-// socket.on('test', msg => {
-//     console.log(msg);
-// })
-// socket.on('private message', msg => {
-//     console.log(msg);
-// })
+console.log(socket);
+// when recive from server
+socket.on('some event', msg => {
+    console.log('ddd');
+})
 
 init();
 
