@@ -104,3 +104,15 @@ i, ion-icon {
     transform: translateX(-50%, 50%);
 
 }
+
+.alert{
+    position: absolute;
+    left: 50%;
+    top: 357px;
+    transform: translateX(-50%);
+    color: #EB4D4D;
+    font-family: Lato;
+    font-size: 20px;
+    transition: background-color 0.3s, color 0.3s;
+
+}
