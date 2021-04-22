@@ -30,7 +30,6 @@ app.get('/online', (req, res) => {
 });
 
 app.get('/online/:id', (req, res) => {
-  let playersSet = new Set()
   
   res.sendFile(__dirname + '/index.html');
   
@@ -41,23 +40,25 @@ app.get('/online/:id', (req, res) => {
     socket.on('join room', ({socketRoomId, username}) => {
       clients_in_the_room = io.sockets.adapter.rooms.get(socketRoomId)?.size
       if(clients_in_the_room < 2 || clients_in_the_room === undefined){
-        rooms[socketRoomId] = {// add an example starter room
-          id: socketRoomId,
-          players: [],
-          setCount: 0
-      };
+        if (!rooms[socketRoomId]){
+          rooms[socketRoomId] = {// add an example starter room
+            id: socketRoomId,
+            players: [],
+            setCount: 0
+        };
+        }
         console.log('Waiting for an opponent')
         socket.join(socketRoomId)
         socket._username = username
         rooms[socketRoomId].players.push(socket)
         rooms[socketRoomId].setCount++
-        var newPlayer = {//A better pratice would be create a "class" or new function for the Player object
+        
+        var newPlayer = {
           id: socket.id,
           name: username,
          };
-         players[socket.id] = newPlayer;//Adding this to the players dictionary will let us find the player object again via their socket id'
+         players[socket.id] = newPlayer;
       
-        playersSet.add(socket)
           
         } else if (clients_in_the_room === 2){
           console.log('SORRY, Lobby is full');
