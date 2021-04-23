@@ -1,24 +1,19 @@
+const { io } = require("socket.io-client");
+
 var score,roundScore,activePlayer,gamePlaying;
 var socket = io();
-let counter = 0;
 let socketRoomId = location.pathname.match(/(?<=\/)(?=[^\/]*$).*/gm)[0]
 
 // emit to server
-socket.emit('join', 'hola this is the ' + counter + ' message');
-console.log(socketRoomId);
 socket.emit('join room', ({socketRoomId, username: localStorage.getItem('username')}))
-console.log(socket);
-// when recive from server
-socket.on('some event', msg => {
-    console.log('ddd');
-})
 
-window.addEventListener('click', e => {
-    socket.emit('test', 'hi')
-})
+// window.addEventListener('click', e => {
+//     socket.emit('test', 'hi')
+// })
 
 // Game Logic starts here
 init();
+
 
 if (document.querySelector('.dice')){
     document.querySelector('.dice').style.display = 'none'; //set the dice invisbile
@@ -26,35 +21,38 @@ if (document.querySelector('.dice')){
 
 if (document.querySelector('.btn-roll')){
     document.querySelector('.btn-roll').addEventListener('click', function() {
-    
+        
         if (gamePlaying){
             //Random number
             var dice = Math.floor(Math.random()*6 +1);  //create random number for dice
-    
-            //Display the result
-            if (document.querySelector('.dice')){
-                document.querySelector('.dice').style.display = 'block';
-                document.querySelector('.dice').src = '/img/dice-'+dice+'.png';
-            }
-    
-            //update the roll number if the dive WAS NOT A 1
-            if (dice !== 1) {
-                // add score
-                roundScore += dice //Same as roundScore = roundScore + dice
-                document.getElementById('current-'+activePlayer).textContent = roundScore
-    
-            } else {
-                nextPlayer();
-    
-    
-            }
-    
+            socket.emit('rollDice', ({dice, socketID: socket.id, roomID: socketRoomId}))
         }
     
     })
 
 }
 
+socket.on('socketRollDice', (socketDice) => {
+    console.log(socketDice);
+    
+    //Display the result
+    if (document.querySelector('.dice')){
+        document.querySelector('.dice').style.display = 'block';
+        document.querySelector('.dice').src = '/img/dice-'+socketDice+'.png';
+    }
+
+    //update the roll number if the dive WAS NOT A 1
+    if (socketDice !== 1) {
+        // add score
+        roundScore += socketDice //Same as roundScore = roundScore + dice
+        document.getElementById('current-'+activePlayer).textContent = roundScore
+
+    } else {
+        nextPlayer();
+
+
+    }
+})
 
 //Hold button
 
